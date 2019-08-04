@@ -14,7 +14,7 @@ exports.fonts = async (req, res) => {
   const url = `https://api.github.com/search/code\?q\=+filename:${fileName}${extStr}`
 
   const headers = { 
-    headers: { Authorization: `token ${process.env.GH_TOKEN}` }
+    headers: { Authorization: `token ${process.env.gh_token}` }
   }
 
   await axios.get(url, headers)

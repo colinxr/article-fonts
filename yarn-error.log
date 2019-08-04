@@ -1,0 +1,55 @@
+Arguments: 
+  /Users/article-mbp/.nvm/versions/node/v11.12.0/bin/node /Users/article-mbp/Library/Caches/co.zeit.now/dev/builders/yarn --prefer-offline --ignore-engines --cwd /Users/article-mbp/Sites/article-fonts
+
+PATH: 
+  /Users/article-mbp/Library/Caches/co.zeit.now/dev/builders:/Users/article-mbp/.nvm/versions/node/v11.12.0/bin:/bin:/usr/bin:/usr/local/bin:/Applications/MAMP/Library/bin/:/Applications/MAMP/bin/php/php7.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/Library/bin/:/Applications/MAMP/bin/php/php7.3.1/bin:/Users/article-mbp/.nvm/versions/node/v11.12.0/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  11.12.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile '/Users/article-mbp/Library/Caches/Yarn/v4/npm-ms-2.1.2-d09d1f357b443f493382a8eb3ccd183872ae6009/node_modules/ms/index.js' -> '/Users/article-mbp/Sites/article-fonts/node_modules/@babel/core/node_modules/ms/index.js'
+
+npm manifest: 
+  {
+    "name": "article-fonts",
+    "version": "1.0.0",
+    "description": "pirate fonts from github",
+    "main": "index.js",
+    "scripts": {
+      "prod": "node ./server.js",
+      "watch": "nodemon ./server.js --ignore public/"
+    },
+    "author": "Colin Rabyniuk",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.19.0",
+      "body-parser": "^1.19.0",
+      "dotenv": "^8.0.0",
+      "express": "^4.17.1",
+      "serverless-http": "^2.0.2"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.5.5",
+      "autoprefixer": "^9.6.1",
+      "babel-core": "^6.26.3",
+      "babel-loader": "^8.0.6",
+      "babel-preset-env": "^1.7.0",
+      "nodemon": "^1.19.1",
+      "now": "^15.8.7",
+      "sass-loader": "^7.1.0",
+      "webpack": "^4.39.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

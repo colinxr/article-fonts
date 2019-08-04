@@ -9,6 +9,9 @@
   },
   "author": "Colin Rabyniuk",
   "license": "ISC",
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
