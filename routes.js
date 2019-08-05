@@ -4,32 +4,44 @@ exports.api = (req, res) => {
   res.json({ message: 'api is working' })
 };
 
-exports.fonts = async (req, res) => {
-  const fileName = req.params.font
-  const exts = req.query.ext.split(' ')
-  const extStr = exts.map(ext => {
-    return `+extension:${ext}`
-  }).join('')
+exports.client = (request, result) => {
+  result.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+}
 
-  const url = `https://api.github.com/search/code\?q\=+filename:${fileName}${extStr}`
+exports.fontHandler = async (request, result) => {
+  const fileName = request.params.font
+  let url = `https://api.github.com/search/code\?q\=+filename:${fileName}`
+  
+  if (request.query.ext.length) {
+    const exts = request.query.ext.split(' ')
+    const extStr = exts.map(ext => {
+      return `+extension:${ext}`
+    }).join('')
+    
+    url = url + extStr
+  }
 
   const headers = { 
-    headers: { Authorization: `token ${process.env.gh_token}` }
+    // headers: { Authorization: `token ${process.env.GH_TOKEN}` }
+    headers: { Authorization: `token a7ae4d62ffe62b18ec35c4bfe49f8c0da91dc9c3` }
   }
 
   await axios.get(url, headers)
     .then(resp => {
-      console.log(resp.data.items)
-      return resp.data.items.map(item => {
-        return {
-          name: item.name,
-          src: `${item.html_url}?raw=true`,
-        }
+      const extArr = request.query.ext.split(' ')
+
+      const filteredItems = extArr.map(ext => {
+        return resp.data.items.find(item => item.name.includes(ext))
+      })
+
+      return filteredItems
+    })
+    .then(filteredItems => {
+      return filteredItems.map(item => {
+        const { name, html_url } = item
+        return { name: name, src: `${html_url}?raw=true` }
       })
     })
-    .then(data => {
-      console.log(data)
-      res.json({ data: data })
-    })
-    .catch(error => res.json({ msg: error }))  
+    .then(items => result.send(items))
+    .catch(error => result.send(error))  
 }
